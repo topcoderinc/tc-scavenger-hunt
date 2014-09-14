@@ -7,14 +7,6 @@ var Step = require('../models/Step');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-
-  var s = new Step();
-  s.number = 3;
-  s.instructions = "Solve this algorithm..... Call the method with the following array: [1, 2]. Enter the resulting number as your answer.";
-  s.hint = 'Use the following inputs...';
-  s.answer = '3';
-  s.save();
-
   User.find({totalTime: { $gt: 0 }}, { handle: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, users) {
 
     res.render('index', {
@@ -22,7 +14,6 @@ router.get('/', function(req, res) {
       leaderboard: users
     });
   });
-
 });
 
 router.post('/start', function(req, res) {
@@ -111,6 +102,7 @@ router.get('/restart', function(req, res) {
   res.json({message: req.user.handle + ' deleted.'});
 });
 
+// TEMP FOR DEVELOPMENT
 router.get('/users', function(req, res) {
 
   User.find(function(error, allUsers) {
@@ -119,7 +111,16 @@ router.get('/users', function(req, res) {
 
 });
 
+// TEMP FOR DEVELOPMENT
 router.get('/test', function(req, res) {
+  
+  var s = new Step();
+  s.number = 3;
+  s.instructions = "Solve this algorithm..... Call the method with the following array: [1, 2]. Enter the resulting number as your answer.";
+  s.hint = 'Use the following inputs...';
+  s.answer = '3';
+  s.save();
+
   res.json({user: req.user});
 });
 
