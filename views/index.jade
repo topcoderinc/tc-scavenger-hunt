@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  p To get started, POST your handle and email to /start.
+  p At any time you can cURL /help for more information.
+
+  h2 Leaderboard
+  ol
+    each val in leaderboard
+      li #{val.handle} in #{val.totalTime} minutes
