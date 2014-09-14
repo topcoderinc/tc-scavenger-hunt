@@ -35,7 +35,7 @@ router.post('/start', function(req, res) {
 router.post('/submit', function(req, res) {
   var step = currentStep(req.user);
   // prevent them from hitting the submit button twice.
-  if (step == undefined) {
+  if (step === undefined) {
     res.json({ message: 'You have already submitted for this step. Please cURL /play again to continue.' });
   } else {
     if (step.answer.toLowerCase() === req.body.answer.toLowerCase()) {
@@ -113,7 +113,7 @@ router.get('/users', function(req, res) {
 
 // TEMP FOR DEVELOPMENT
 router.get('/test', function(req, res) {
-  
+
   var s = new Step();
   s.number = 3;
   s.instructions = "Solve this algorithm..... Call the method with the following array: [1, 2]. Enter the resulting number as your answer.";
@@ -126,11 +126,11 @@ router.get('/test', function(req, res) {
 
 var currentStep = function(user) {
   for (i = 0; i < user.steps.length; i++) {
-    if (user.steps[i].complete == false) {
+    if (user.steps[i].complete === false) {
       return user.steps[i];
     }
   }
-}
+};
 
 var randomStep = function(stepNumber) {
   var deferred = Q.defer();
@@ -143,6 +143,6 @@ var randomStep = function(stepNumber) {
     });
   });
   return deferred.promise;
-}
+};
 
 module.exports = router;
