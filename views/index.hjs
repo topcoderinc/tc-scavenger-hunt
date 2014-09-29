@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Topcoder Scavenger Hunt - Scavenge the web, call APIs, solve algorithm challegnes and more!">
+    <meta name="author" content="Jeff Douglas">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+    <!-- Font-awesmome Css -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme CSS -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Magnific Popup CSS -->
+    <link href="assets/js/plugins/magnificPopup/magnific-popup.css" rel="stylesheet" type="text/css" />
+    <!-- Quotes Rotator CSS -->
+    <link href="assets/js/plugins/QuotesRotator/css/QuotesRotator.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/plugins/QuotesRotator/js/modernizr.custom.js"></script>
+
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="http://3a72mb4dqcfnkgfimp04jgyyd.wpengine.netdna-cdn.com/wp-content/themes/tcs-responsive/favicon.ico">
+  </head>
+
+  <body>
+  <header id="marketing">
+    <div class="container">
+     <div class="row">
+        <div class="span12">
+          <div class="header-inner">
+          <a class="logo pull-left" href="#"><img src="assets/img/tc-logo.png"> Topcoder Scavenger Hunt</a>
+          <div class="social-icons text-right pull-right">
+                <a href="#"><i class="icon-facebook"></i></a>
+                <a href="#"><i class="icon-twitter"></i></a>
+            </div><!--/social-icons-->
+            </div><!--/header-inner-->
+        </div><!--/span12-->
+        <div class="clearfix"></div>
+        <div class="span12">
+        <div class="masthead">
+          <div class="row">
+              <div class="span7 text-center">
+                  <div class="marketing-media">
+                  <img src="assets/img/bash.png" alt="cURL to Play" width="450" />
+                    </div><!--/marketing-media-->
+                </div><!--/span5-->
+              <div class="span5">
+                  <h1 class="hero-title">cURL to Play!</h1>
+                    <p class="hero-desc">
+                    cURL the URLs below to our scavenger hunt game. Find clues on the web, calls APIs & solve algorithm challenges for cash and prizes.
+                    </p>
+                    <p class="hero-desc">
+                    Are you good enough to make to the leaderboard?
+                    </p>
+                </div><!--/span7-->
+            </div><!--/row-->
+        </div><!--/masthead-->
+        </div><!--/span12-->
+        </div><!--/row-->
+        </div><!--/container-->
+     </header><!--/marketing-->
+
+     <section id="howtoplay" class="sec-wrap">
+       <div class="container">
+        <div class="row">
+            <div class="span12">
+                <h2 class="sec-title"><span>How to Play</span></h2>
+            </div><!--span12-->
+         </div><!--/row-->
+         <div class="row">
+            <div class="span12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>URL</th>
+                    <th>Instructions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>POST</td>
+                    <td>http://scavengerhunt.topcoder.com/start</td>
+                    <td>POST your topcoder <strong>handle</strong> and <strong>email</strong> address to register for the game and get started.</td>
+                  </tr>
+                  <tr>
+                    <td>GET</td>
+                    <td>http://scavengerhunt.topcoder.com/play</td>
+                    <td>To receive your instructions for each step in the scavenger hunt.</td>
+                  </tr>
+                  <tr>
+                    <td>POST</td>
+                    <td>http://scavengerhunt.topcoder.com/submit</td>
+                    <td>POST your <strong>answer</strong> for each step to see if you solved the step correctly.</td>
+                  </tr>
+                  <tr>
+                    <td>GET</td>
+                    <td>http://scavengerhunt.topcoder.com/help</td>
+                    <td>To receive info and instructions pertaining to the scavenger hunt.</td>
+                  </tr>
+                  <tr>
+                    <td>GET</td>
+                    <td>http://scavengerhunt.topcoder.com/hint</td>
+                    <td>To receive a context specific hint for your current step of the scavenger hunt.</td>
+                  </tr>
+                  <tr>
+                    <td>GET</td>
+                    <td>http://scavengerhunt.topcoder.com/leaderboard</td>
+                    <td>Returns the leaderboard to see who has solved all steps in the scavenger hunt the quickest!</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+            </div><!--/span12-->
+        </div><!--/row-->
+        </div><!--/container-->
+     </section><!--/inside-->
+
+
+     <section id="testimonial" class="sec-wrap">
+       <div class="container">
+          <div class="row">
+           <div class="clearfix"></div>
+           <div class="span12">
+             <div class="row">
+                <div class="span8 text-center">
+                  <p class="testi-text">Simply POST your <a href="http://www.topcoder.com" target="_blank">topcoder</a> handle and email address to register for the game and get started. If you don't have a free topcoder account, <a href="http://www.topcoder.com/?action=callback&utmSource=scavengerhunt&utmCampaign=website" target="_blank">signup here</a>.</p>
+                  <p class="testi-text">To play, curl /play to get your instructions for each step in the scavenger hunt. Your task for each individual step in the scavenger hunt may be to find some text on a webpage, call an API to discover return values or write an algorithm for specific input and outputs.</p>
+                  <p class="testi-text">Then POST your answer for each step in the scavenger hunt to see if you were successfuly. Competitors that solve all steps the fastest will rise to the top of the leaderboard.</p>
+                  <p class="testi-text">The top 5 winners will receive $100 each and a t-shirt.</p>
+                </div><!--/span5-->
+                <div class="span4">
+                  <div class="marketing-media">
+                    <img src="http://img3.wikia.nocookie.net/__cb20120731132023/mario/images/3/32/Star_Coin.png" alt="How this works." width="150"  style="padding-top:30px" />
+                  </div><!--/marketing-media-->
+                </div><!--/span7-->
+               </div><!--/row-->
+           </div><!--/span12-->
+           </div><!--/row-->
+        </div><!--/container-->
+     </section><!--/inside-->
+
+    <section id="leaderboard" class="sec-wrap">
+      <div class="container">
+       <div class="row">
+           <div class="span12">
+               <h2 class="sec-title"><span>Leaderboard</span></h2>
+           </div><!--span12-->
+        </div><!--/row-->
+        <div class="row">
+          <div class="span3"></div>
+           <div class="span6">
+             <table class="table">
+               <tbody>
+                 {{#leaders}}
+                 <tr>
+                   <td><img src="{{picture}}" width="100"></td>
+                   <td><a href="http://www.topcoder.com/member-profile/{{handle}}" target="_blank">{{handle}}</a></td>
+                   <td>{{totalTime}} minutes</td>
+                 </tr>
+                 {{/leaders}}
+               </tbody>
+             </table>
+           </div><!--/span12-->
+           <div class="span3"></div>
+       </div><!--/row-->
+       </div><!--/container-->
+    </section><!--/inside-->
+
+    <footer>
+      <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <p class="text-center">&copy; Appirio 2014. All rights reserved.</p>
+                </div><!--/span12-->
+            </div><!--/row-->
+        </div><!--/container-->
+    </footer>
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Magnific Popup JS -->
+    <script src="assets/js/plugins/magnificPopup/magnific-popup.min.js"></script>
+    <!-- Quotes Rotator JS -->
+    <script src="assets/js/plugins/QuotesRotator/js/jquery.cbpQTRotator.min.js"></script>
+    <script>
+  $(function () {
+    // Testimonials rotator
+    $( '#cbp-qtrotator' ).cbpQTRotator();
+    // Image Zoom
+    $('.thumbnails').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    closeOnContentClick: false,
+    closeBtnInside: true,
+    mainClass: 'mfp-with-zoom mfp-img-mobile',
+    image: {
+      verticalFit: true,
+      titleSrc: function(item) {
+        return item.el.attr('title') + '<small>How to sell books online</small>';
+      }
+    },
+    gallery: {
+      enabled: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 300, // don't foget to change the duration also in CSS
+      opener: function(element) {
+        return element.find('img');
+      }
+    }
+    });
+  });
+  </script>
+  </body>
+</html>

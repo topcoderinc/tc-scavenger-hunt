@@ -22,7 +22,7 @@ db.once('open', function callback () {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'hjs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // find & set the user from their handle
 app.use(function (req, res, next) {
   var path = req.path.split('/')[1];
-  if (['play','submit','hint','restart','test'].indexOf(path) != -1) {
+  if (['play','submit','hint','restart'].indexOf(path) != -1) {
     if (req.query.handle) {
       User.find({ handle: req.query.handle }, function(error, found) {
         if (found.length) {

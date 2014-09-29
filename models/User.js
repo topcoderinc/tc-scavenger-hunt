@@ -4,6 +4,7 @@ var StepSchema = require('../models/Step').Schema;
 var userSchema = new mongoose.Schema({
   handle: String,
   email: String,
+  picture: { type: String, default: 'http://3a72mb4dqcfnkgfimp04jgyyd.wpengine.netdna-cdn.com/wp-content/themes/tcs-responsive/i/default-photo.png' },
   steps: [StepSchema],
   startDatetime: { type: Date, default: new Date()},
   endDatetime: Date,

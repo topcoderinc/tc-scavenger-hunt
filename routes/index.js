@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var Q = require("q");
+var request = require("request");
 var moment = require("moment");
 var User = require('../models/User');
 var Step = require('../models/Step');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  User.find({totalTime: { $gt: 0 }}, { handle: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, users) {
-
+  User.find({totalTime: { $gt: 0 }}, { handle: 1, picture: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, leaders) {
     res.render('index', {
       title: 'Topcoder Scavenger Hunt',
-      leaderboard: users
+      leaders: leaders
     });
   });
 });
@@ -22,34 +22,26 @@ router.post('/start', function(req, res) {
     if (found.length) {
       res.json({ message: 'It looks like you have already started the scavenger hunt. cURL /play to continue.' });
     } else {
-      // create the new user
-      var user = new User({handle: req.body.handle, email: req.body.email});
-      user.save(function (err, u) {
-        if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
-        if (!err) res.json({ message: 'Excellent! You are all set for the scavenger hunt. cURL /play to get started.' });
+      request('http://api.topcoder.com/v2/users/' + req.body.handle, function (error, response, body) {
+        if (response.statusCode === 200) {
+          // create the new user
+          var json = JSON.parse(body);
+          var user = new User({
+            handle: req.body.handle,
+            email: req.body.email,
+            picture: 'http://community.topcoder.com' + json.photoLink
+          });
+          user.save(function (err, u) {
+            if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
+            if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play to get your instructions or /help for more info.' });
+          });
+        } else {
+          res.json({ message: 'Could not find a topcoder member with the handle \'' + req.body.handle + '\'. Make sure you register at topcoder.com to play.' });
+        }
       });
+
     }
   });
-});
-
-router.post('/submit', function(req, res) {
-  var step = currentStep(req.user);
-  // prevent them from hitting the submit button twice.
-  if (step === undefined) {
-    res.json({ message: 'You have already submitted for this step. Please cURL /play again to continue.' });
-  } else {
-    if (step.answer.toLowerCase() === req.body.answer.toLowerCase()) {
-      User.update({ handle: req.user.handle, 'steps.number': req.user.steps.length}, {'$set': {
-            'steps.$.complete': true,
-            'steps.$.userAnswer': req.body.answer
-        }}, function(err) {
-        if (err) console.log(err);
-      });
-      res.json({ success: true, message: 'Correct! Please cURL /play again to continue.' });
-    } else {
-      res.json({ success: false, message: 'Sorry. That was not the correct answer.' });
-    }
-  }
 });
 
 router.get('/play', function(req, res) {
@@ -79,11 +71,31 @@ router.get('/play', function(req, res) {
             }}, function(err) {
             if (err) console.log(err);
           });
-          res.json({ message: 'All done!!' });
+          res.json({ message: 'Congratulations! You have completed the scavenger hunt. Check out /leaderbaord to see your results and standings.' });
         }
       });
   }
 
+});
+
+router.post('/submit', function(req, res) {
+  var step = currentStep(req.user);
+  // prevent them from hitting the submit button twice.
+  if (step === undefined) {
+    res.json({ message: 'You have already submitted for this step. Please cURL /play again to continue.' });
+  } else {
+    if (step.answer.toLowerCase() === req.body.answer.toLowerCase()) {
+      User.update({ handle: req.user.handle, 'steps.number': req.user.steps.length}, {'$set': {
+            'steps.$.complete': true,
+            'steps.$.userAnswer': req.body.answer
+        }}, function(err) {
+        if (err) console.log(err);
+      });
+      res.json({ success: true, message: 'Correct! Please cURL /play again to continue.' });
+    } else {
+      res.json({ success: false, message: 'Sorry. That was not the correct answer.' });
+    }
+  }
 });
 
 router.get('/hint', function(req, res) {
@@ -92,9 +104,16 @@ router.get('/hint', function(req, res) {
 });
 
 router.get('/help', function(req, res) {
-  res.json({ message: 'Call Ghost Busters.' });
+  res.json({ message: 'Call GhostBusters.' });
 });
 
+router.get('/leaderboard', function(req, res) {
+  User.find({totalTime: { $gt: 0 }}, { handle: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, users) {
+    res.json({ leaderboard: users });
+  });
+});
+
+// TEMP FOR DEVELOPMENT
 router.get('/restart', function(req, res) {
   User.remove({ handle : req.user.handle }, function(error, deleted) {
     console.log(deleted);
@@ -103,25 +122,20 @@ router.get('/restart', function(req, res) {
 });
 
 // TEMP FOR DEVELOPMENT
-router.get('/users', function(req, res) {
+router.get('/test', function(req, res) {
+
+  // var s = new Step();
+  // s.number = 3;
+  // s.instructions = "Solve this algorithm..... Call the method with the following array: [1, 2]. Enter the resulting number as your answer.";
+  // s.hint = 'Use the following inputs...';
+  // s.answer = '3';
+  // s.save();
+
 
   User.find(function(error, allUsers) {
     res.json({users: allUsers});
   });
 
-});
-
-// TEMP FOR DEVELOPMENT
-router.get('/test', function(req, res) {
-
-  var s = new Step();
-  s.number = 3;
-  s.instructions = "Solve this algorithm..... Call the method with the following array: [1, 2]. Enter the resulting number as your answer.";
-  s.hint = 'Use the following inputs...';
-  s.answer = '3';
-  s.save();
-
-  res.json({user: req.user});
 });
 
 var currentStep = function(user) {
