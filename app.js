@@ -13,7 +13,7 @@ var routes = require('./routes/index');
 var app = express();
 
 // connect to mongo
-mongoose.connect('mongodb://localhost/scavengerhunt');
+mongoose.connect(process.env.MONGOLAB_URI|| 'mongodb://localhost/scavengerhunt');
 // watch for connection notification
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
