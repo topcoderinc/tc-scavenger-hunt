@@ -134,7 +134,7 @@ router.get('/cheats', function(req, res) {
   // s.answer = 'convert Russian literature into binary';
   // s.save();
 
-  Steps.find(function(error, allUsers) {
+  Step.find(function(error, allUsers) {
     res.json({users: allUsers});
   });
 
