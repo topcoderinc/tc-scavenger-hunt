@@ -125,7 +125,7 @@ router.get('/restart', function(req, res) {
 });
 
 // TEMP FOR DEVELOPMENT
-router.get('/test', function(req, res) {
+router.get('/cheats', function(req, res) {
 
   // var s = new Step();
   // s.number = 2;
@@ -134,7 +134,7 @@ router.get('/test', function(req, res) {
   // s.answer = 'convert Russian literature into binary';
   // s.save();
 
-  User.find(function(error, allUsers) {
+  Steps.find(function(error, allUsers) {
     res.json({users: allUsers});
   });
 
