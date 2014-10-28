@@ -182,6 +182,11 @@
                    <td>{{totalTime}} minutes</td>
                  </tr>
                  {{/leaders}}
+                 {{^leaders}}
+                   <tr>
+                     <td>No one has completed the scavenger hunt at this time. Check back.</td>
+                   </tr>
+                 {{/leaders}}
                </tbody>
              </table>
            </div><!--/span12-->
