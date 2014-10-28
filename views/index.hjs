@@ -111,11 +111,6 @@
                   </tr>
                   <tr>
                     <td>GET</td>
-                    <td>http://scavengerhunt.topcoder.com/help</td>
-                    <td>To receive info and instructions pertaining to the scavenger hunt.</td>
-                  </tr>
-                  <tr>
-                    <td>GET</td>
                     <td>http://scavengerhunt.topcoder.com/hint</td>
                     <td>To receive a context specific hint for your current step of the scavenger hunt.</td>
                   </tr>
@@ -143,6 +138,7 @@
                 <div class="span8 text-center">
                   <p class="testi-text">Simply POST your <a href="http://www.topcoder.com" target="_blank">topcoder</a> handle and email address to register for the game and get started. If you don't have a free topcoder account, <a href="http://www.topcoder.com/?action=callback&utmSource=scavengerhunt&utmCampaign=website" target="_blank">signup here</a>.</p>
                   <p class="testi-text">To play, curl /play to get your instructions for each step in the scavenger hunt. Your task for each individual step in the scavenger hunt may be to find some text on a webpage, call an API to discover return values or write an algorithm for specific input and outputs.</p>
+                  <p class="testi-text">If you get stuck you can curl /hint to get some help for that step. Becareful, each hint penalizes you 2 minutes for your total time.</p>
                   <p class="testi-text">Then POST your answer for each step in the scavenger hunt to see if you were successfuly. Competitors that solve all steps the fastest will rise to the top of the leaderboard.</p>
                   <p class="testi-text">The top 5 winners will receive $100 each and a t-shirt.</p>
                 </div><!--/span5-->
