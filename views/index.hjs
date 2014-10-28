@@ -20,6 +20,16 @@
     <link href="assets/js/plugins/QuotesRotator/css/QuotesRotator.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/plugins/QuotesRotator/js/modernizr.custom.js"></script>
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=203761616422195&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
     <!--[if IE 7]>
       <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
@@ -46,8 +56,8 @@
           <div class="header-inner">
           <a class="logo pull-left" href="#"><img src="assets/img/tc-logo.png"> Topcoder Scavenger Hunt</a>
           <div class="social-icons text-right pull-right">
-                <a href="#"><i class="icon-facebook"></i></a>
-                <a href="#"><i class="icon-twitter"></i></a>
+                <a href="https://www.facebook.com/sharer.php?app_id=203761616422195&sdk=joey&u=http%3A%2F%2Fscavengerhunt.topcoder.com%2F&display=popup&ref=plugin" target="_blank"><i class="icon-facebook"></i></a>
+                <a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fscavengerhunt.topcoder.com&text=Topcoder%20Scavenger%20Hunt&tw_p=tweetbutton&url=http%3A%2F%2Fscavengerhunt.topcoder.com&via=topcoder" target="_blank"><i class="icon-twitter"></i></a>
             </div><!--/social-icons-->
             </div><!--/header-inner-->
         </div><!--/span12-->
