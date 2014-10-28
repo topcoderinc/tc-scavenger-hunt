@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Q = require("q");
+var _ = require('lodash');
 var request = require("request");
 var moment = require("moment");
 var User = require('../models/User');
@@ -64,6 +65,8 @@ router.get('/play', function(req, res) {
         } else {
           var start = moment(req.user.startDatetime);
           var end = moment(new Date());
+          // add in any penalties
+          end.add(req.user.hints * 2, 'minute');
           User.update({ handle: req.user.handle}, {'$set': {
                 'complete': true,
                 'endDatetime': new Date(),
@@ -84,7 +87,7 @@ router.post('/submit', function(req, res) {
   if (step === undefined) {
     res.json({ message: 'You have already submitted for this step. Please cURL /play again to continue.' });
   } else {
-    if (step.answer.toLowerCase() === req.body.answer.toLowerCase()) {
+    if (_.indexOf(step.answer, req.body.answer.toLowerCase()) != -1) {
       User.update({ handle: req.user.handle, 'steps.number': req.user.steps.length}, {'$set': {
             'steps.$.complete': true,
             'steps.$.userAnswer': req.body.answer
@@ -99,12 +102,12 @@ router.post('/submit', function(req, res) {
 });
 
 router.get('/hint', function(req, res) {
+  // increment the number of hints they requested
+  User.update({ handle: req.user.handle}, {'$inc': { 'hints': 1 }}, function(err) {
+    if (err) console.log(err);
+  });
   var step = currentStep(req.user);
   res.json({ step: step.number, hint: step.hint });
-});
-
-router.get('/help', function(req, res) {
-  res.json({ message: 'Call GhostBusters.' });
 });
 
 router.get('/leaderboard', function(req, res) {
@@ -125,12 +128,11 @@ router.get('/restart', function(req, res) {
 router.get('/test', function(req, res) {
 
   // var s = new Step();
-  // s.number = 3;
-  // s.instructions = "Solve this algorithm..... Call the method with the following array: [1, 2]. Enter the resulting number as your answer.";
-  // s.hint = 'Use the following inputs...';
-  // s.answer = '3';
+  // s.number = 2;
+  // s.instructions = "Follow the instructions at http://idolondemand.topcoder.com/#register to signup for an HP IDOL OnDemand API Key. We will be validating these keys with HP so ensure you enter 'topcoder' in the 'how did you hear' box or your submission will be rejected since we will not be able to find it.\nCall the 'Find Related Concepts' API using the text 'topcoder'. Enter the number of 'docs_with_all_terms' for the text 'TopCoder Open' as your anwser.";
+  // s.hint = 'You can use their online playground at https://www.idolondemand.com/developer/apis/findrelatedconcepts#try.';
+  // s.answer = 'convert Russian literature into binary';
   // s.save();
-
 
   User.find(function(error, allUsers) {
     res.json({users: allUsers});
