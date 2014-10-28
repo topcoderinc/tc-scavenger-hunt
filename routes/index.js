@@ -97,7 +97,7 @@ router.post('/submit', function(req, res) {
       });
       res.json({ success: true, message: 'Correct! Please cURL /play again to continue.' });
     } else {
-      res.json({ success: false, message: 'Sorry. That was not the correct answer.' });
+      res.json({ success: false, message: 'Sorry. That was not the correct answer. You can try a /hint but it will cost you a 2 minute penalty.' });
     }
   }
 });
