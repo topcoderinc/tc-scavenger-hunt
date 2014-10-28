@@ -30,7 +30,8 @@ router.post('/start', function(req, res) {
           var user = new User({
             handle: req.body.handle,
             email: req.body.email,
-            picture: 'http://community.topcoder.com' + json.photoLink
+            picture: 'http://community.topcoder.com' + json.photoLink,
+            startDatetime: new Date()
           });
           user.save(function (err, u) {
             if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
