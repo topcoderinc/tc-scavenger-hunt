@@ -34,7 +34,7 @@ router.post('/start', function(req, res) {
           });
           user.save(function (err, u) {
             if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
-            if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play to get your instructions or /help for more info.' });
+            if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play?handle=' + req.body.handle + ' to get your instructions.' });
           });
         } else {
           res.json({ message: 'Could not find a topcoder member with the handle \'' + req.body.handle + '\'. Make sure you register at topcoder.com to play.' });
