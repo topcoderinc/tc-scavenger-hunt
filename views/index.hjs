@@ -150,7 +150,7 @@
                   <p class="testi-text">To play, curl /play to get your instructions for each step in the scavenger hunt. Your task for each individual step in the scavenger hunt may be to find some text on a webpage, call an API to discover return values or write an algorithm for specific input and outputs.</p>
                   <p class="testi-text">If you get stuck you can curl /hint to get some help for that step. Becareful, each hint penalizes you 2 minutes for your total time.</p>
                   <p class="testi-text">Then POST your answer for each step in the scavenger hunt to see if you were successfuly. Competitors that solve all steps the fastest will rise to the top of the leaderboard.</p>
-                  <p class="testi-text">The top 5 winners will receive $100 each and a t-shirt.</p>
+                  <p class="testi-text">The top 5 winners will receive $100 each and a topcoder t-shirt.</p>
                 </div><!--/span5-->
                 <div class="span4">
                   <div class="marketing-media">
@@ -204,39 +204,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <!-- Magnific Popup JS -->
-    <script src="assets/js/plugins/magnificPopup/magnific-popup.min.js"></script>
-    <!-- Quotes Rotator JS -->
-    <script src="assets/js/plugins/QuotesRotator/js/jquery.cbpQTRotator.min.js"></script>
-    <script>
-  $(function () {
-    // Testimonials rotator
-    $( '#cbp-qtrotator' ).cbpQTRotator();
-    // Image Zoom
-    $('.thumbnails').magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    closeOnContentClick: false,
-    closeBtnInside: true,
-    mainClass: 'mfp-with-zoom mfp-img-mobile',
-    image: {
-      verticalFit: true,
-      titleSrc: function(item) {
-        return item.el.attr('title') + '<small>How to sell books online</small>';
-      }
-    },
-    gallery: {
-      enabled: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 300, // don't foget to change the duration also in CSS
-      opener: function(element) {
-        return element.find('img');
-      }
-    }
-    });
-  });
-  </script>
   </body>
 </html>
