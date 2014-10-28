@@ -11,6 +11,7 @@ var User = require('./models/User');
 var routes = require('./routes/index');
 
 var app = express();
+app.set('port', process.env.PORT || 3000);
 
 // connect to mongo
 mongoose.connect(process.env.MONGOLAB_URI|| 'mongodb://localhost/scavengerhunt');
@@ -49,7 +50,7 @@ app.use(function (req, res, next) {
       res.json({ message: 'No handle found!! Make sure you pass your handle on each request: /' + path + '?handle=myhandle' });
     }
   } else { next(); }
-})
+});
 
 app.use('/', routes);
 
@@ -84,5 +85,8 @@ app.use(function(err, req, res, next) {
     });
 });
 
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+});
 
 module.exports = app;
