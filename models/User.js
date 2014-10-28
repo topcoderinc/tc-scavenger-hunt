@@ -6,6 +6,7 @@ var userSchema = new mongoose.Schema({
   email: String,
   picture: { type: String, default: 'http://3a72mb4dqcfnkgfimp04jgyyd.wpengine.netdna-cdn.com/wp-content/themes/tcs-responsive/i/default-photo.png' },
   steps: [StepSchema],
+  hints: { type: Number, default: 0},
   startDatetime: { type: Date, default: new Date()},
   endDatetime: Date,
   totalTime: Number,
