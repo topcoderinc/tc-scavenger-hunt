@@ -108,7 +108,7 @@
                     <td>POST</td>
                     <td>/start</td>
                     <td>POST your topcoder <strong>handle</strong> and <strong>email</strong> address to register for the game and get started.
-                     <pre style="margin-top:15px">curl POST http://scavengerhunt.topcoder.com/start -d username=YOUR-HANDLE -d email=YOUR-EMAIL</pre>
+                     <pre style="margin-top:15px">curl -X POST http://scavengerhunt.topcoder.com/start -d handle=YOUR-HANDLE -d email=YOUR-EMAIL</pre>
                     </td>
                   </tr>
                   <tr>
@@ -122,7 +122,7 @@
                     <td>POST</td>
                     <td>/submit</td>
                     <td>POST your <strong>answer</strong> for each step to see if you solved the step correctly.
-                      <pre style="margin-top:15px">curl POST http://scavengerhunt.topcoder.com/submit?handle=YOUR-HANDLE -d answer=YOUR-ANSWER</pre>
+                      <pre style="margin-top:15px">curl -X POST http://scavengerhunt.topcoder.com/submit?handle=YOUR-HANDLE -d answer=YOUR-ANSWER</pre>
                     </td>
                   </tr>
                   <tr>
