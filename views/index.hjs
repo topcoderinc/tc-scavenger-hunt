@@ -106,28 +106,38 @@
                 <tbody>
                   <tr>
                     <td>POST</td>
-                    <td>http://scavengerhunt.topcoder.com/start</td>
-                    <td>POST your topcoder <strong>handle</strong> and <strong>email</strong> address to register for the game and get started.</td>
+                    <td>/start</td>
+                    <td>POST your topcoder <strong>handle</strong> and <strong>email</strong> address to register for the game and get started.
+                     <pre style="margin-top:15px">curl POST http://scavengerhunt.topcoder.com/start -d username=YOUR-HANDLE -d email=YOUR-EMAIL</pre>
+                    </td>
                   </tr>
                   <tr>
                     <td>GET</td>
-                    <td>http://scavengerhunt.topcoder.com/play</td>
-                    <td>To receive your instructions for each step in the scavenger hunt.</td>
+                    <td>/play</td>
+                    <td>To receive your instructions for each step in the scavenger hunt.
+                      <pre style="margin-top:15px">curl http://scavengerhunt.topcoder.com/play?handle=YOUR-HANDLE</pre>
+                    </td>
                   </tr>
                   <tr>
                     <td>POST</td>
-                    <td>http://scavengerhunt.topcoder.com/submit</td>
-                    <td>POST your <strong>answer</strong> for each step to see if you solved the step correctly.</td>
+                    <td>/submit</td>
+                    <td>POST your <strong>answer</strong> for each step to see if you solved the step correctly.
+                      <pre style="margin-top:15px">curl POST http://scavengerhunt.topcoder.com/submit?handle=YOUR-HANDLE -d answer=YOUR-ANSWER</pre>
+                    </td>
                   </tr>
                   <tr>
                     <td>GET</td>
-                    <td>http://scavengerhunt.topcoder.com/hint</td>
-                    <td>To receive a context specific hint for your current step of the scavenger hunt.</td>
+                    <td>/hint</td>
+                    <td>To receive a context specific hint for your current step of the scavenger hunt.
+                      <pre style="margin-top:15px">curl http://scavengerhunt.topcoder.com/hint?handle=YOUR-HANDLE</pre>
+                    </td>
                   </tr>
                   <tr>
                     <td>GET</td>
-                    <td>http://scavengerhunt.topcoder.com/leaderboard</td>
-                    <td>Returns the leaderboard to see who has solved all steps in the scavenger hunt the quickest!</td>
+                    <td>/leaderboard</td>
+                    <td>Returns the leaderboard to see who has solved all steps in the scavenger hunt the quickest!
+                      <pre style="margin-top:15px">curl http://scavengerhunt.topcoder.com/leaderboard</pre>
+                    </td>
                   </tr>
                 </tbody>
               </table>
