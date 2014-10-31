@@ -30,7 +30,7 @@ router.post('/start', function(req, res) {
           var user = new User({
             handle: req.body.handle,
             email: req.body.email,
-            picture: 'http://community.topcoder.com' + json.photoLink,
+            picture: picture(json.photoLink),
             startDatetime: new Date()
           });
           user.save(function (err, u) {
@@ -160,6 +160,16 @@ var randomStep = function(stepNumber) {
     });
   });
   return deferred.promise;
+};
+
+var picture = function(photoLink) {
+  if (photoLink.indexOf('http://') === 0) {
+    return photoLink;
+  } else if (photoLink.indexOf('/') === 0) {
+    return 'http://community.topcoder.com' + photoLink;
+  } else {
+    return 'http://www.topcoder.com/wp-content/themes/tcs-responsive/i/default-photo.png';
+  }
 };
 
 module.exports = router;
