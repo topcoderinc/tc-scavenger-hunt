@@ -121,30 +121,6 @@ router.get('/leaderboard', function(req, res) {
   });
 });
 
-// TEMP FOR DEVELOPMENT
-router.get('/restart', function(req, res) {
-  User.remove({ handle : req.user.handle }, function(error, deleted) {
-    console.log(deleted);
-  });
-  res.json({message: req.user.handle + ' deleted.'});
-});
-
-// TEMP FOR DEVELOPMENT
-router.get('/cheats', function(req, res) {
-
-  // var s = new Step();
-  // s.number = 2;
-  // s.instructions = "Follow the instructions at http://idolondemand.topcoder.com/#register to signup for an HP IDOL OnDemand API Key. We will be validating these keys with HP so ensure you enter 'topcoder' in the 'how did you hear' box or your submission will be rejected since we will not be able to find it.\nCall the 'Find Related Concepts' API using the text 'topcoder'. Enter the number of 'docs_with_all_terms' for the text 'TopCoder Open' as your anwser.";
-  // s.hint = 'You can use their online playground at https://www.idolondemand.com/developer/apis/findrelatedconcepts#try.';
-  // s.answer = 'convert Russian literature into binary';
-  // s.save();
-
-  Step.find(function(error, allUsers) {
-    res.json({users: allUsers});
-  });
-
-});
-
 var currentStep = function(user) {
   for (i = 0; i < user.steps.length; i++) {
     if (user.steps[i].complete === false) {
