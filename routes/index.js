@@ -18,32 +18,36 @@ router.get('/', function(req, res) {
 });
 
 router.post('/start', function(req, res) {
-  // see if the user has already started
-  User.find({ handle: req.body.handle }, function(error, found) {
-    if (found.length) {
-      res.json({ message: 'It looks like you have already started the scavenger hunt. cURL /play to continue.' });
-    } else {
-      request('http://api.topcoder.com/v2/users/' + req.body.handle, function (error, response, body) {
-        if (response.statusCode === 200) {
-          // create the new user
-          var json = JSON.parse(body);
-          var user = new User({
-            handle: req.body.handle,
-            email: req.body.email,
-            picture: picture(json.photoLink),
-            startDatetime: new Date()
-          });
-          user.save(function (err, u) {
-            if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
-            if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play?handle=' + req.body.handle + ' to get your instructions.' });
-          });
-        } else {
-          res.json({ message: 'Could not find a topcoder member with the handle \'' + req.body.handle + '\'. Make sure you register at topcoder.com to play.' });
-        }
-      });
+  if (process.env.STATUS === 'open') {
+    // see if the user has already started
+    User.find({ handle: req.body.handle }, function(error, found) {
+      if (found.length) {
+        res.json({ message: 'It looks like you have already started the scavenger hunt. cURL /play to continue.' });
+      } else {
+        request('http://api.topcoder.com/v2/users/' + req.body.handle, function (error, response, body) {
+          if (response.statusCode === 200) {
+            // create the new user
+            var json = JSON.parse(body);
+            var user = new User({
+              handle: req.body.handle,
+              email: req.body.email,
+              picture: picture(json.photoLink),
+              startDatetime: new Date()
+            });
+            user.save(function (err, u) {
+              if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
+              if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play?handle=' + req.body.handle + ' to get your instructions.' });
+            });
+          } else {
+            res.json({ message: 'Could not find a topcoder member with the handle \'' + req.body.handle + '\'. Make sure you register at topcoder.com to play.' });
+          }
+        });
 
-    }
-  });
+      }
+    });
+  } else {
+    res.json({ message: 'Sorry! The scavenger hunt is complete. Please watch our twitter feed for the next contest.' });
+  }
 });
 
 router.get('/play', function(req, res) {
