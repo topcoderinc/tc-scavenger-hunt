@@ -121,7 +121,7 @@
                   <tr>
                     <td>POST</td>
                     <td>/submit</td>
-                    <td>POST your <strong>answer</strong> for each step to see if you solved the step correctly.
+                    <td>POST your <strong>answer</strong> for each step to see if you solved the step correctly. <a href="http://meyerweb.com/eric/tools/dencoder/" target="_blank">URL encode</a> any answers that contains spaces.
                       <pre style="margin-top:15px">curl -X POST http://scavengerhunt.topcoder.com/submit?handle=YOUR-HANDLE -d answer=YOUR-ANSWER</pre>
                     </td>
                   </tr>
