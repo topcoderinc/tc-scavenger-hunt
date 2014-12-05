@@ -185,18 +185,25 @@
            <div class="span6">
              <table class="table">
                <tbody>
-                 {{#leaders}}
-                 <tr>
-                   <td><img src="{{picture}}" width="100"></td>
-                   <td><a href="http://www.topcoder.com/member-profile/{{handle}}" target="_blank">{{handle}}</a></td>
-                   <td>{{totalTime}} minutes</td>
-                 </tr>
-                 {{/leaders}}
-                 {{^leaders}}
+                 {{#open}}
+                   {{#leaders}}
                    <tr>
-                     <td>No one has completed the scavenger hunt at this time. Check back.</td>
+                     <td><img src="{{picture}}" width="100"></td>
+                     <td><a href="http://www.topcoder.com/member-profile/{{handle}}" target="_blank">{{handle}}</a></td>
+                     <td>{{totalTime}} minutes</td>
                    </tr>
-                 {{/leaders}}
+                   {{/leaders}}
+                   {{^leaders}}
+                     <tr>
+                       <td>No one has completed the scavenger hunt at this time. Please check back.</td>
+                     </tr>
+                   {{/leaders}}
+                 {{/open}}
+                 {{^open}}
+                     <tr>
+                       <td>Sorry... the scavenger hunt is not running at this time. Please check back.</td>
+                     </tr>
+                 {{/open}}
                </tbody>
              </table>
            </div><!--/span12-->
