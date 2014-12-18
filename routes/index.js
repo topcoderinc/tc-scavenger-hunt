@@ -140,14 +140,14 @@ router.get('/hint', function(req, res) {
 router.get('/leaderboard', function(req, res) {
   if (process.env.STATUS === 'open') {
 
-    User.find({totalTime: { $gt: 0 }}, { handle: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, users) {
+    User.find({totalTime: { $gt: 0 }}, { handle: 1, totalTime: 1, picture: 1} ).sort({ 'totalTime': 1 }).exec(function(err, users) {
       res.json({ leaderboard: users });
     });
 
   } else {
     res.json({ message: 'Sorry! The scavenger hunt is complete. Please watch our twitter feed for the next contest.' });
   }
-    
+
 });
 
 var currentStep = function(user) {
