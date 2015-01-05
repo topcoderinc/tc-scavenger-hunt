@@ -37,17 +37,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
   var path = req.path.split('/')[1];
   if (['play','submit','hint','restart'].indexOf(path) != -1) {
-    if (req.query.handle) {
-      User.find({ handle: req.query.handle }, function(error, found) {
+    if (req.query.handle && req.query.key) {
+      User.find({ handle: req.query.handle, key: req.query.key }, function(error, found) {
         if (found.length) {
           req.user = found[0];
           next();
         } else {
-          res.json({ message: 'Handle not found! Make sure you POST to /start first to begin.' });
+          res.json({ message: 'Handle/key combination not found! If you have not registered yet, make sure you POST to /start first to begin. See the home page for instructions.' });
         }
       });
     } else {
-      res.json({ message: 'No handle found!! Make sure you pass your handle on each request: /' + path + '?handle=myhandle' });
+      res.json({ message: 'Handle and/or key not present!! Make sure you pass your handle and key on each request: /' + path + '?handle=myhandle&key=mykey' });
     }
   } else { next(); }
 });

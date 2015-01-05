@@ -9,6 +9,7 @@ var Step = require('../models/Step');
 
 /* GET home page. */
 router.get('/', function(req, res) {
+
   User.find({totalTime: { $gt: 0 }}, { handle: 1, picture: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, leaders) {
     res.render('index', {
       title: 'Topcoder Scavenger Hunt',
@@ -31,13 +32,13 @@ router.post('/start', function(req, res) {
             var json = JSON.parse(body);
             var user = new User({
               handle: req.body.handle,
-              email: req.body.email,
+              key: randomInt(1,100000),
               picture: picture(json.photoLink),
               startDatetime: new Date()
             });
             user.save(function (err, u) {
               if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
-              if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play?handle=' + req.body.handle + ' to get your instructions.' });
+              if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play?handle=' + req.body.handle + '&key=' + user.key + ' to get your instructions. Ensure you pass your handle and key when required. Please do not lose your key. There is no way to recover it.' });
             });
           } else {
             res.json({ message: 'Could not find a topcoder member with the handle \'' + req.body.handle + '\'. Make sure you register at topcoder.com to play.' });
@@ -180,5 +181,9 @@ var picture = function(photoLink) {
     return 'http://www.topcoder.com/wp-content/themes/tcs-responsive/i/default-photo.png';
   }
 };
+
+function randomInt (low, high) {
+  return Math.floor(Math.random() * (high - low) + low);
+}
 
 module.exports = router;
