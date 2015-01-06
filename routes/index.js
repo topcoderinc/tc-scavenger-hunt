@@ -9,14 +9,14 @@ var Step = require('../models/Step');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-
-  User.find({totalTime: { $gt: 0 }}, { handle: 1, picture: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, leaders) {
-    res.render('index', {
-      title: 'Topcoder Scavenger Hunt',
-      leaders: leaders,
-      open: process.env.STATUS === 'open' ? true : false
-    });
-  });
+  res.redirect('http://hphaven.topcoder.com/scavenger-hunt');
+  // User.find({totalTime: { $gt: 0 }}, { handle: 1, picture: 1, totalTime: 1} ).sort({ 'totalTime': 1 }).exec(function(err, leaders) {
+  //   res.render('index', {
+  //     title: 'Topcoder Scavenger Hunt',
+  //     leaders: leaders,
+  //     open: process.env.STATUS === 'open' ? true : false
+  //   });
+  // });
 });
 
 router.post('/start', function(req, res) {
