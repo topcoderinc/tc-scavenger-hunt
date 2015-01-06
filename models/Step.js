@@ -6,7 +6,8 @@ var stepSchema = new mongoose.Schema({
   hint: String,
   answer: Array,
   userAnswer: String,
-  complete: { type: Boolean, default: false }
+  complete: { type: Boolean, default: false },
+  active: { type: Boolean, default: true }
 });
 
 module.exports = mongoose.model('Step', stepSchema);

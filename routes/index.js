@@ -163,8 +163,8 @@ var randomStep = function(stepNumber) {
   var deferred = Q.defer();
   Step.count({ number: stepNumber }, function(err, ct) {
     var r = Math.floor(Math.random() * ct);
-    // get a random step #1
-    Step.find({ number: stepNumber }).limit(1).skip(r).exec(function(err, step) {
+    // get a random question for the step
+    Step.find({ number: stepNumber, active: true }).limit(1).skip(r).exec(function(err, step) {
       if (err) deferred.reject(err);
       if (!err) deferred.resolve(step[0]);
     });
