@@ -161,7 +161,7 @@ var currentStep = function(user) {
 
 var randomStep = function(stepNumber) {
   var deferred = Q.defer();
-  Step.count({ number: stepNumber }, function(err, ct) {
+  Step.count({ number: stepNumber, active: true }, function(err, ct) {
     var r = Math.floor(Math.random() * ct);
     // get a random question for the step
     Step.find({ number: stepNumber, active: true }).limit(1).skip(r).exec(function(err, step) {
