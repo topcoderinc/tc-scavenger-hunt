@@ -28,18 +28,24 @@ router.post('/start', function(req, res) {
       } else {
         request('http://api.topcoder.com/v2/users/' + req.body.handle, function (error, response, body) {
           if (response.statusCode === 200) {
-            // create the new user
             var json = JSON.parse(body);
-            var user = new User({
-              handle: req.body.handle,
-              key: randomInt(1,100000),
-              picture: picture(json.photoLink),
-              startDatetime: new Date()
-            });
-            user.save(function (err, u) {
-              if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
-              if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play?handle=' + req.body.handle + '&key=' + user.key + ' to get your instructions. Ensure you pass your handle and key when required. Please do not lose your key. There is no way to recover it.' });
-            });
+            console.log('entered: ' + req.body.handle);
+            console.log('api returned: ' + json.handle);
+            if (req.body.handle === json.handle) {
+              // create the new user
+              var user = new User({
+                handle: req.body.handle,
+                key: randomInt(1,100000),
+                picture: picture(json.photoLink),
+                startDatetime: new Date()
+              });
+              user.save(function (err, u) {
+                if (err) res.json({ message: 'Drat! Looks like there was an error starting the hunt for you.' });
+                if (!err) res.json({ message: 'Welcome to the scavenger hunt! You are all set to get started. cURL /play?handle=' + req.body.handle + '&key=' + user.key + ' to get your instructions. Ensure you pass your handle and key when required. Please do not lose your key. There is no way to recover it.' });
+              });
+            } else {
+              res.json({ message: 'Could not find a topcoder member with the handle \'' + req.body.handle + '\'. Make sure you register at topcoder.com to play and enter your handle with any upper or lower case characters.' });
+            }
           } else {
             res.json({ message: 'Could not find a topcoder member with the handle \'' + req.body.handle + '\'. Make sure you register at topcoder.com to play.' });
           }
