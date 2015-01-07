@@ -29,8 +29,6 @@ router.post('/start', function(req, res) {
         request('http://api.topcoder.com/v2/users/' + req.body.handle, function (error, response, body) {
           if (response.statusCode === 200) {
             var json = JSON.parse(body);
-            console.log('entered: ' + req.body.handle);
-            console.log('api returned: ' + json.handle);
             if (req.body.handle === json.handle) {
               // create the new user
               var user = new User({
